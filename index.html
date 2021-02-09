@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+        /* Document
+           ========================================================================== */
+
+        /**
+         * 1. Correct the line height in all browsers.
+         * 2. Prevent adjustments of font size after orientation changes in iOS.
+         */
+
+        html {
+            line-height: 1.15; /* 1 */
+            -webkit-text-size-adjust: 100%; /* 2 */
+        }
+
+        /* Sections
+           ========================================================================== */
+
+        /**
+         * Remove the margin in all browsers.
+         */
+
+        body {
+            margin: 0;
+        }
+
+        /**
+         * Render the `main` element consistently in IE.
+         */
+
+        main {
+            display: block;
+        }
+
+        /**
+         * Correct the font size and margin on `h1` elements within `section` and
+         * `article` contexts in Chrome, Firefox, and Safari.
+         */
+
+        h1 {
+            font-size: 2em;
+            margin: 0.67em 0;
+        }
+
+        /* Grouping content
+           ========================================================================== */
+
+        /**
+         * 1. Add the correct box sizing in Firefox.
+         * 2. Show the overflow in Edge and IE.
+         */
+
+        hr {
+            box-sizing: content-box; /* 1 */
+            height: 0; /* 1 */
+            overflow: visible; /* 2 */
+        }
+
+        /**
+         * 1. Correct the inheritance and scaling of font size in all browsers.
+         * 2. Correct the odd `em` font sizing in all browsers.
+         */
+
+        pre {
+            font-family: monospace, monospace; /* 1 */
+            font-size: 1em; /* 2 */
+        }
+
+        /* Text-level semantics
+           ========================================================================== */
+
+        /**
+         * Remove the gray background on active links in IE 10.
+         */
+
+        a {
+            background-color: transparent;
+        }
+
+        /**
+         * 1. Remove the bottom border in Chrome 57-
+         * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+         */
+
+        abbr[title] {
+            border-bottom: none; /* 1 */
+            text-decoration: underline; /* 2 */
+            text-decoration: underline dotted; /* 2 */
+        }
+
+        /**
+         * Add the correct font weight in Chrome, Edge, and Safari.
+         */
+
+        b,
+        strong {
+            font-weight: bolder;
+        }
+
+        /**
+         * 1. Correct the inheritance and scaling of font size in all browsers.
+         * 2. Correct the odd `em` font sizing in all browsers.
+         */
+
+        code,
+        kbd,
+        samp {
+            font-family: monospace, monospace; /* 1 */
+            font-size: 1em; /* 2 */
+        }
+
+        /**
+         * Add the correct font size in all browsers.
+         */
+
+        small {
+            font-size: 80%;
+        }
+
+        /**
+         * Prevent `sub` and `sup` elements from affecting the line height in
+         * all browsers.
+         */
+
+        sub,
+        sup {
+            font-size: 75%;
+            line-height: 0;
+            position: relative;
+            vertical-align: baseline;
+        }
+
+        sub {
+            bottom: -0.25em;
+        }
+
+        sup {
+            top: -0.5em;
+        }
+
+        /* Embedded content
+           ========================================================================== */
+
+        /**
+         * Remove the border on images inside links in IE 10.
+         */
+
+        img {
+            border-style: none;
+        }
+
+        /* Forms
+           ========================================================================== */
+
+        /**
+         * 1. Change the font styles in all browsers.
+         * 2. Remove the margin in Firefox and Safari.
+         */
+
+        button,
+        input,
+        optgroup,
+        select,
+        textarea {
+            font-family: inherit; /* 1 */
+            font-size: 100%; /* 1 */
+            line-height: 1.15; /* 1 */
+            margin: 0; /* 2 */
+        }
+
+        /**
+         * Show the overflow in IE.
+         * 1. Show the overflow in Edge.
+         */
+
+        button,
+        input { /* 1 */
+            overflow: visible;
+        }
+
+        /**
+         * Remove the inheritance of text transform in Edge, Firefox, and IE.
+         * 1. Remove the inheritance of text transform in Firefox.
+         */
+
+        button,
+        select { /* 1 */
+            text-transform: none;
+        }
+
+        /**
+         * Correct the inability to style clickable types in iOS and Safari.
+         */
+
+        button,
+        [type="button"],
+        [type="reset"],
+        [type="submit"] {
+            -webkit-appearance: button;
+        }
+
+        /**
+         * Remove the inner border and padding in Firefox.
+         */
+
+        button::-moz-focus-inner,
+        [type="button"]::-moz-focus-inner,
+        [type="reset"]::-moz-focus-inner,
+        [type="submit"]::-moz-focus-inner {
+            border-style: none;
+            padding: 0;
+        }
+
+        /**
+         * Restore the focus styles unset by the previous rule.
+         */
+
+        button:-moz-focusring,
+        [type="button"]:-moz-focusring,
+        [type="reset"]:-moz-focusring,
+        [type="submit"]:-moz-focusring {
+            outline: 1px dotted ButtonText;
+        }
+
+        /**
+         * Correct the padding in Firefox.
+         */
+
+        fieldset {
+            padding: 0.35em 0.75em 0.625em;
+        }
+
+        /**
+         * 1. Correct the text wrapping in Edge and IE.
+         * 2. Correct the color inheritance from `fieldset` elements in IE.
+         * 3. Remove the padding so developers are not caught out when they zero out
+         *    `fieldset` elements in all browsers.
+         */
+
+        legend {
+            box-sizing: border-box; /* 1 */
+            color: inherit; /* 2 */
+            display: table; /* 1 */
+            max-width: 100%; /* 1 */
+            padding: 0; /* 3 */
+            white-space: normal; /* 1 */
+        }
+
+        /**
+         * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+         */
+
+        progress {
+            vertical-align: baseline;
+        }
+
+        /**
+         * Remove the default vertical scrollbar in IE 10+.
+         */
+
+        textarea {
+            overflow: auto;
+        }
+
+        /**
+         * 1. Add the correct box sizing in IE 10.
+         * 2. Remove the padding in IE 10.
+         */
+
+        [type="checkbox"],
+        [type="radio"] {
+            box-sizing: border-box; /* 1 */
+            padding: 0; /* 2 */
+        }
+
+        /**
+         * Correct the cursor style of increment and decrement buttons in Chrome.
+         */
+
+        [type="number"]::-webkit-inner-spin-button,
+        [type="number"]::-webkit-outer-spin-button {
+            height: auto;
+        }
+
+        /**
+         * 1. Correct the odd appearance in Chrome and Safari.
+         * 2. Correct the outline style in Safari.
+         */
+
+        [type="search"] {
+            -webkit-appearance: textfield; /* 1 */
+            outline-offset: -2px; /* 2 */
+        }
+
+        /**
+         * Remove the inner padding in Chrome and Safari on macOS.
+         */
+
+        [type="search"]::-webkit-search-decoration {
+            -webkit-appearance: none;
+        }
+
+        /**
+         * 1. Correct the inability to style clickable types in iOS and Safari.
+         * 2. Change font properties to `inherit` in Safari.
+         */
+
+        ::-webkit-file-upload-button {
+            -webkit-appearance: button; /* 1 */
+            font: inherit; /* 2 */
+        }
+
+        /* Interactive
+           ========================================================================== */
+
+        /*
+         * Add the correct display in Edge, IE 10+, and Firefox.
+         */
+
+        details {
+            display: block;
+        }
+
+        /*
+         * Add the correct display in all browsers.
+         */
+
+        summary {
+            display: list-item;
+        }
+
+        /* Misc
+           ========================================================================== */
+
+        /**
+         * Add the correct display in IE 10+.
+         */
+
+        template {
+            display: none;
+        }
+
+        /**
+         * Add the correct display in IE 10.
+         */
+
+        [hidden] {
+            display: none;
+        }
+
+        html {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        *, *::before, *::after {
+            -webkit-box-sizing: inherit;
+            box-sizing: inherit;
+        }
+
+        p, h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: 100%;
+        }
+
+        .wrapper {
+            max-width: 500px;
+            height: 100vh;
+            margin: 0 auto;
+        }
+
+        .quiz {
+            width: 100%;
+            height: 100%;
+        }
+
+        .quiz-start {
+            width: 100%;
+            height: 100%;
+            padding-top: 10vh;
+            padding-bottom: 37px;
+            display: none;
+            position: relative;
+        }
+
+        .quiz-start::before {
+            position: absolute;
+            content: "";
+            width: 120px;
+            height: 90px;
+            top: 21px;
+            left: 16%;
+            background: url(img/radio.png) center no-repeat;
+            background-size: 120%;
+        }
+
+        .quiz-start_wrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .quiz-start_top {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .quiz-start_img {
+            width: 174px;
+            height: 174px;
+            margin-bottom: 10px;
+        }
+
+        .quiz-start_title {
+            font-family: Arimo, Arial, sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            font-style: normal;
+            letter-spacing: normal;
+            text-align: center;
+            color: #383a48;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .quiz-start_text {
+            font-family: Arimo, Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            font-style: normal;
+            letter-spacing: normal;
+            line-height: 175%;
+            text-align: right;
+            color: #383a48;
+            max-width: 330px;
+            margin-bottom: 6vh;
+        }
+
+        .start-btn {
+            width: 328px;
+            height: 48px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.16);
+            border: solid 4px #383a48;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: Arimo, Arial, sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            font-style: normal;
+            letter-spacing: normal;
+            color: #383a48;
+        }
+
+        .quiz-item {
+            width: 100%;
+            height: 100%;
+            padding-top: 20px;
+            display: none;
+        }
+
+        .quiz-item_wrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .quiz-item_top,
+        .quiz-item_bottom {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .scoring-skip {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 25px;
+            margin-bottom: 22px;
+        }
+
+        .skip,
+        .scoring {
+            width: 56px;
+            height: 56px;
+            border-radius: 8px;
+            background-color: #bd90e5;
+            font-family: Arimo, Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            font-style: normal;
+            letter-spacing: normal;
+            color: #fff;
+            text-align: center;
+            padding: 10px 10px 5px 10px;
+        }
+
+        .skip div:first-child,
+        .scoring div:first-child {
+            margin-bottom: 3px;
+        }
+
+        .skip {
+            cursor: pointer;
+        }
+
+        .quiz-question {
+            font-family: Arimo, Arial, sans-serif;
+            font-size: 21px;
+            font-weight: 700;
+            font-style: normal;
+            line-height: 150%;
+            letter-spacing: normal;
+            color: #383a48;
+            max-width: 275px;
+            text-align: right;
+            margin-bottom: 5vh;
+        }
+
+        .quiz-answers {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 0 30px;
+            margin-bottom: 5vh;
+        }
+
+        .answer-btn {
+            width: 100%;
+            height: 48px;
+            border-radius: 4px;
+            border: solid 4px #383a48;
+            background-color: #fff;
+            cursor: pointer;
+            margin-bottom: 24px;
+            font-family: Arimo, Arial, sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            font-style: normal;
+            letter-spacing: normal;
+            color: #383a48;
+        }
+
+        .answer-btn:last-child {
+            margin-bottom: 0;
+        }
+
+        .quiz-progress {
+            width: 100%;
+            height: 64px;
+            background-color: #ac71e0;
+        }
+
+        .quiz-story {
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+
+        .quiz-story::before {
+            position: absolute;
+            content: "";
+            width: 120px;
+            height: 90px;
+            top: 195px;
+            left: 33%;
+            background: url(img/radio.png) center no-repeat;
+            background-size: 125%;
+            z-index: 500;
+        }
+
+        .quiz-story_img {
+            max-width: 360px;
+            height: 240px;
+            margin: 0 auto 5vh auto;
+        }
+
+        .quiz-story_wrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .quiz-story_top,
+        .quiz-story_bottom {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .quiz-story_text {
+            font-family: Arimo, Arial, sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            font-style: normal;
+            letter-spacing: normal;
+            line-height: 175%;
+            text-align: right;
+            color: #383a48;
+            max-width: 330px;
+            margin-bottom: 5vh;
+        }
+
+        .next-btn {
+            width: 330px;
+            height: 48px;
+            border-radius: 4px;
+            border: solid 4px #383a48;
+            background-color: #fff;
+            cursor: pointer;
+            margin-bottom: 24px;
+            font-family: Arimo, Arial, sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            font-style: normal;
+            letter-spacing: normal;
+            color: #383a48;
+        }
+
+        .feedback-text {
+            font-family: Arimo, Arial, sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            font-style: normal;
+            letter-spacing: normal;
+            text-align: right;
+            color: #383a48;
+            margin-bottom: 24px;
+        }
+
+        .feedback-text a {
+            color: #383a48;
+        }
+
+        .quiz-end {
+            width: 100%;
+            height: 100%;
+            padding-top: 113px;
+            display: none;
+        }
+
+        .quiz-end_wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .quiz-end_img {
+            margin-bottom: 19px;
+        }
+
+        .quiz-end_score {
+            max-width: 304px;
+            font-family: Arimo, Arial, sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            font-style: normal;
+            line-height: 1.67;
+            letter-spacing: normal;
+            text-align: center;
+            color: #383a48;
+            margin-bottom: 34px;
+        }
+
+        .quiz-end_text {
+            max-width: 260px;
+            font-family: Arimo, Arial, sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            font-style: normal;
+            line-height: 1.36;
+            letter-spacing: normal;
+            text-align: center;
+            color: #383a48;
+        }
+
+        .quiz-item.active,
+        .quiz-story.active,
+        .quiz-start.active,
+        .quiz-end.active {
+            display: block;
+        }
+
+        @media screen and (max-width: 480px) {
+            .quiz-start::before {
+                left: 5%;
+            }
+
+            .quiz-story::before {
+                left: 5%;
+            }
+
+        }
+
+        @media screen and (max-width: 414px) {
+            .quiz-start::before {
+                left: 3%;
+            }
+
+            .quiz-story::before {
+                left: 3%;
+            }
+        }
+
+    </style>
+    <title>Roadio</title>
+</head>
+<body>
+<div class="wrapper" dir="rtl">
+    <div class="quiz">
+        <div class="quiz-start active">
+            <div class="quiz-start_wrapper">
+                <div class="quiz-start_top">
+                    <div class="quiz-start_img"><img src="img/start-img.png" alt="Story image"></div>
+                    <p class="quiz-start_title">Don Mclean - American Pie</p>
+                    <p class="quiz-start_text"> אמריקן פאי הוא סינגל הבכורה של זמר הפולק רוק
+                        האמריקאי דון מקלין. השיר יצא באוקטובר 1971
+                        .וזכה להצלחה רבה ברחבי העולם ובארה"ב
+                        אמריקן פאי" הוא שיר ביוגרפי בחלקו, ובחלקו"
+                        בלדה שעוסקת במעבר של ארצות הברית משנות
+                        .החמישים לשנות השישים</p>
+                </div>
+                <button class="start-btn">בואו נתחיל</button>
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-item_wrapper">
+                <div class="quiz-item_top">
+                    <div class="scoring-skip">
+                        <div class="scoring">
+                            <div>ניקוד</div>
+                            <div>0</div>
+                        </div>
+                        <div class="skip">
+                            <div>דלג</div>
+                            <div>X</div>
+                        </div>
+                    </div>
+                    <p class="quiz-question"></p>
+                </div>
+                <div class="quiz-item_bottom">
+                    <div class="quiz-answers">
+                        <button class="answer-btn"></button>
+                        <button class="answer-btn"></button>
+                        <button class="answer-btn"></button>
+                    </div>
+                    <div class="quiz-progress"></div>
+                </div>
+            </div>
+        </div>
+        <div class="quiz-story">
+            <div class="quiz-story_wrapper">
+                <div class="quiz-story_top">
+                    <div class="quiz-story_img">
+                        <img id="story-img" src="" alt="Story image">
+                    </div>
+                    <p class="quiz-story_text"></p>
+                </div>
+                <div class="quiz-story_bottom">
+                    <button class="next-btn">השאלה הבאה</button>
+                    <p class="feedback-text">מצאתם טעות? <a href="#!">ספרו לנו</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="quiz-end">
+            <div class="quiz-end_wrapper">
+                <div class="quiz-end_img">
+                    <img src="img/radio-final.png" alt="Radio image">
+                </div>
+                <p class="quiz-end_score">!תוצאה סופית: 150 נקודות
+                    💪 לא רע בכלל, אבל יש מקום לשיפור</p>
+                <p class="quiz-end_text">.כרגע נגמרו לנו השאלות כשיתחיל השיר הבא, יופיעו
+                    !שאלות נוספות</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    let quizStart = document.querySelector('.quiz-start');
+    let startButton = document.querySelector('.start-btn');
+    let quizItem = document.querySelector('.quiz-item');
+    let quizQuestion = document.querySelector('.quiz-question');
+    let answerButtons = document.querySelectorAll('.answer-btn');
+    let questionSkip = document.querySelector('.skip');
+    let quizStory = document.querySelector('.quiz-story');
+    let storyImg = document.querySelector('#story-img');
+    let storyText = document.querySelector('.quiz-story_text');
+    let nextButton = document.querySelector('.next-btn');
+    let quizEnd = document.querySelector('.quiz-end');
+    let currentItems;
+    let currentItem = 0;
+    let currentArtist;
+    let previousArtist;
+    let startIntervalID;
+    let skipIntervalID;
+    let intervalID;
+
+
+    startButton.addEventListener('click', () => {
+        sendRequest();
+        startIntervalID = setInterval(sendRequest, 10000);
+        quizStart.classList.remove('active');
+    })
+
+    function sendRequest() {
+        fetch('https://app.roadio.io/v2/play/items?apikey=1e8ec6bc-7d28-4cd3-a947-d4ee2f9d1dcc&station=glglz&locale=he')
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    alert('oops! something went wrong...please try again!');
+                }
+            })
+            .then((data) => {
+                console.log(data);
+                currentItems = data.items;
+                if (currentItems.length === 0) {
+                    console.log('uploading questions...please wait');
+                    quizQuestion.innerHTML = 'uploading questions...please wait';
+                } else {
+                    currentArtist = currentItems[0].artist;
+                    clearInterval(startIntervalID);
+                }
+                if (currentArtist !== previousArtist) {
+                    setQuestion();
+                    quizItem.classList.add('active');
+                    quizEnd.classList.remove('active');
+                    clearInterval(intervalID);
+                    clearInterval(skipIntervalID);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
+    function setQuestion() {
+        if (currentItems.length > currentItem) {
+            quizQuestion.innerHTML = currentItems[currentItem].question;
+            for (let i = 0; i < answerButtons.length; i++) {
+                answerButtons[i].innerHTML = currentItems[currentItem].answers[i];
+                answerButtons[i].onclick = () => {
+                    if (currentItems[currentItem].answers[i] === currentItems[currentItem].right_answer) {
+                        alert("Yes! That's correct");
+                        setStory(currentItems[currentItem].story_images[0], currentItems[currentItem].story);
+                        currentItem++;
+                    } else {
+                        alert("Nope.. try again");
+                    }
+                }
+            }
+        } else {
+            quizItem.classList.remove('active');
+            quizEnd.classList.add('active');
+            currentItem = 0;
+            previousArtist = currentArtist;
+            skipIntervalID = setInterval(sendRequest, 10000);
+        }
+        questionSkip.onclick = () => {
+            currentItem++;
+            setQuestion();
+        }
+    }
+
+    function setStory(image, story) {
+        quizItem.classList.remove('active');
+        quizStory.classList.add('active');
+        storyImg.src = image;
+        storyText.innerHTML = story;
+        nextButton.onclick = () => {
+            if (currentItems.length > currentItem) {
+                setQuestion();
+                quizStory.classList.remove('active');
+                quizItem.classList.add('active');
+            } else {
+                quizStory.classList.remove('active');
+                quizEnd.classList.add('active');
+                intervalID = setInterval(sendRequest, 10000);
+                currentItem = 0;
+                previousArtist = currentArtist;
+            }
+        }
+    }
+
+</script>
+</body>
+</html>
