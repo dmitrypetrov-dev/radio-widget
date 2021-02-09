@@ -883,8 +883,8 @@
                         answerButtons[i].classList.add('correct');
                         setTimeout(() => {
                             setStory(currentItems[currentItem].story_images[0], currentItems[currentItem].story);
+                            currentItem++;
                         }, 2000);
-                        currentItem++;
                     } else {
                         answerButtons[i].classList.add('wrong');
                     }
