@@ -393,6 +393,7 @@
             padding-bottom: 37px;
             display: none;
             position: relative;
+            background: url(img/main-bg.png) center -245px no-repeat;
         }
 
         .quiz-start::before {
@@ -518,9 +519,33 @@
             padding: 10px 10px 5px 10px;
         }
 
-        .skip div:first-child,
-        .scoring div:first-child {
+        .skip-text,
+        .scoring-text {
             margin-bottom: 3px;
+        }
+
+        .skip-cross {
+            width: 18px;
+            height: 18px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .skip-cross div {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            top: 7px;
+            left: 0;
+            background-color: #fff;
+        }
+
+        .skip-cross div:first-child {
+            transform: rotate(45deg);
+        }
+
+        .skip-cross div:last-child {
+            transform: rotate(-45deg);
         }
 
         .skip {
@@ -582,6 +607,44 @@
             width: 100%;
             height: 64px;
             background-color: #ac71e0;
+            padding: 29px 16px;
+        }
+
+        .quiz-progress_line {
+            width: 100%;
+            height: 6px;
+            background-color: #383a48;
+            position: relative;
+        }
+
+        .quiz-progress_wrapper {
+            width: 100%;
+            height: 24px;
+            position: absolute;
+            top: -8px;
+            left: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .progressItem {
+            width: 24px;
+            height: 24px;
+            border: solid 4px #383a48;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+
+        .progressItem.current {
+            background-color: #383a48;
+        }
+
+        .progressItem.correct {
+            background-color: #7fd6c2;
+        }
+
+        .progressItem.wrong {
+            background-color: #e07171;
         }
 
         .quiz-story {
@@ -766,12 +829,15 @@
                 <div class="quiz-item_top">
                     <div class="scoring-skip">
                         <div class="scoring">
-                            <div>ניקוד</div>
-                            <div>0</div>
+                            <div class="scoring-text">ניקוד</div>
+                            <div class="scoring-number">0</div>
                         </div>
                         <div class="skip">
-                            <div>דלג</div>
-                            <div>X</div>
+                            <div class="skip-text">דלג</div>
+                            <div class="skip-cross">
+                                <div></div>
+                                <div></div>
+                            </div>
                         </div>
                     </div>
                     <p class="quiz-question"></p>
@@ -782,7 +848,11 @@
                         <button class="answer-btn"></button>
                         <button class="answer-btn"></button>
                     </div>
-                    <div class="quiz-progress"></div>
+                    <div class="quiz-progress">
+                        <div class="quiz-progress_line">
+                            <div class="quiz-progress_wrapper"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -805,8 +875,7 @@
                 <div class="quiz-end_img">
                     <img src="img/radio-final.png" alt="Radio image">
                 </div>
-                <p class="quiz-end_score">!תוצאה סופית: 150 נקודות
-                    💪 לא רע בכלל, אבל יש מקום לשיפור</p>
+                <p class="quiz-end_score"></p>
                 <p class="quiz-end_text">.כרגע נגמרו לנו השאלות כשיתחיל השיר הבא, יופיעו
                     !שאלות נוספות</p>
             </div>
@@ -826,13 +895,19 @@
     let storyText = document.querySelector('.quiz-story_text');
     let nextButton = document.querySelector('.next-btn');
     let quizEnd = document.querySelector('.quiz-end');
+    let score = document.querySelector('.scoring-number');
+    let scoreText = document.querySelector('.quiz-end_score');
+    let progressBar = document.querySelector('.quiz-progress_wrapper');
+    let progressItems;
     let currentItems;
     let currentItem = 0;
     let currentArtist;
     let previousArtist;
+    let currentScore = 0;
     let startIntervalID;
     let skipIntervalID;
     let intervalID;
+    let div;
 
 
     startButton.addEventListener('click', () => {
@@ -861,11 +936,12 @@
                     clearInterval(startIntervalID);
                 }
                 if (currentArtist !== previousArtist) {
-                    setQuestion();
+                    setProgressBar();
                     quizItem.classList.add('active');
                     quizEnd.classList.remove('active');
                     clearInterval(intervalID);
                     clearInterval(skipIntervalID);
+                    setQuestion();
                 }
             })
             .catch((error) => {
@@ -873,20 +949,50 @@
             })
     }
 
+    function setProgressBar() {
+        for (let i = 0; i < currentItems.length; i++) {
+            div = document.createElement('div');
+            div.className = 'progressItem';
+            progressBar.appendChild(div);
+        }
+        progressItems = document.querySelectorAll('.progressItem');
+    }
+
+    function setProgressItem(className) {
+        if (className !== 'correct' && className !== 'wrong') {
+            progressItems[currentItems.length - (currentItem + 1)].classList.add('current');
+        } else if (className === 'correct') {
+            progressItems[currentItems.length - (currentItem + 1)].classList.add('correct');
+        } else {
+            progressItems[currentItems.length - (currentItem + 1)].classList.add('wrong');
+        }
+    }
+
+    function cleanProgressBar() {
+        while (progressBar.firstChild) {
+            progressBar.removeChild(progressBar.firstChild);
+        }
+    }
+
     function setQuestion() {
         if (currentItems.length > currentItem) {
+            setProgressItem();
             quizQuestion.innerHTML = currentItems[currentItem].question;
             for (let i = 0; i < answerButtons.length; i++) {
                 answerButtons[i].innerHTML = currentItems[currentItem].answers[i];
                 answerButtons[i].onclick = () => {
                     if (currentItems[currentItem].answers[i] === currentItems[currentItem].right_answer) {
                         answerButtons[i].classList.add('correct');
+                        setProgressItem('correct');
                         setTimeout(() => {
                             setStory(currentItems[currentItem].story_images[0], currentItems[currentItem].story);
                             currentItem++;
                         }, 2000);
+                        currentScore = currentScore + 100;
+                        score.textContent = String(currentScore);
                     } else {
                         answerButtons[i].classList.add('wrong');
+                        setProgressItem('wrong');
                     }
                 }
             }
@@ -896,6 +1002,10 @@
             currentItem = 0;
             previousArtist = currentArtist;
             skipIntervalID = setInterval(sendRequest, 10000);
+            scoreText.textContent = `תוצאה סופית: ${currentScore} נקודות!` + ' לא רע בכלל, אבל יש מקום לשיפור 💪';
+            currentScore = 0;
+            score.textContent = String(currentScore);
+            cleanProgressBar();
         }
         questionSkip.onclick = () => {
             currentItem++;
@@ -923,6 +1033,10 @@
                 intervalID = setInterval(sendRequest, 10000);
                 currentItem = 0;
                 previousArtist = currentArtist;
+                scoreText.textContent = `תוצאה סופית: ${currentScore} נקודות!` + ' לא רע בכלל, אבל יש מקום לשיפור 💪';
+                currentScore = 0;
+                score.textContent = String(currentScore);
+                cleanProgressBar();
             }
         }
     }
