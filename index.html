@@ -735,19 +735,25 @@
         .quiz-end {
             width: 100%;
             height: 100%;
-            padding-top: 113px;
             display: none;
         }
 
         .quiz-end_wrapper {
             width: 100%;
+            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
+            padding-top: 32vh;
         }
 
-        .quiz-end_img {
-            margin-bottom: 19px;
+        .quiz-end_lottie {
+            position: absolute;
+            width: 100%;
+            height: 70%;
+            top: 0;
+            left: 0;
         }
 
         .quiz-end_score {
@@ -872,8 +878,10 @@
         </div>
         <div class="quiz-end">
             <div class="quiz-end_wrapper">
-                <div class="quiz-end_img">
-                    <img src="img/radio-final.png" alt="Radio image">
+                <div class="quiz-end_lottie">
+                    <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_dqwsziex.json"
+                                   background="transparent" speed="1" style="width: 100%; height: 100%;" loop
+                                   autoplay></lottie-player>
                 </div>
                 <p class="quiz-end_score"></p>
                 <p class="quiz-end_text">.כרגע נגמרו לנו השאלות כשיתחיל השיר הבא, יופיעו
@@ -1042,5 +1050,6 @@
     }
 
 </script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </body>
 </html>
