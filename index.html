@@ -485,6 +485,7 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
         .quiz-item_top,
@@ -781,6 +782,25 @@
             color: #383a48;
         }
 
+        .quiz-item_lottie {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+
+        .correct-answer-100.active,
+        .correct-answer-50.active {
+            display: block;
+        }
+
+        .wrong-answer-1.active,
+        .wrong-answer-2.active {
+            display: block;
+        }
+
         .quiz-item.active,
         .quiz-story.active,
         .quiz-start.active,
@@ -860,6 +880,30 @@
                         </div>
                     </div>
                 </div>
+                <div class="correct-answer-100 quiz-item_lottie">
+                    <lottie-player class="correct-lottie-100"
+                                   src="https://assets9.lottiefiles.com/packages/lf20_dp1tqeij.json"
+                                   background="transparent" speed="1" style="width: 100%; height: 100%;"
+                    ></lottie-player>
+                </div>
+                <div class="correct-answer-50 quiz-item_lottie">
+                    <lottie-player class="correct-lottie-50"
+                                   src="https://assets8.lottiefiles.com/packages/lf20_s7aujx5y.json"
+                                   background="transparent" speed="1" style="width: 100%; height: 100%;"
+                    ></lottie-player>
+                </div>
+                <div class="wrong-answer-1 quiz-item_lottie">
+                    <lottie-player class="wrong-lottie-1"
+                                   src="https://assets6.lottiefiles.com/packages/lf20_j1jw7sxz.json"
+                                   background="transparent" speed="1" style="width: 100%; height: 100%;"
+                    ></lottie-player>
+                </div>
+                <div class="wrong-answer-2 quiz-item_lottie">
+                    <lottie-player class="wrong-lottie-2"
+                                   src="https://assets10.lottiefiles.com/packages/lf20_mtitgyoi.json"
+                                   background="transparent" speed="1" style="width: 100%; height: 100%;"
+                    ></lottie-player>
+                </div>
             </div>
         </div>
         <div class="quiz-story">
@@ -906,6 +950,14 @@
     let score = document.querySelector('.scoring-number');
     let scoreText = document.querySelector('.quiz-end_score');
     let progressBar = document.querySelector('.quiz-progress_wrapper');
+    let correctAnswer100 = document.querySelector('.correct-answer-100');
+    let correctAnswer50 = document.querySelector('.correct-answer-50');
+    let lottie100 = document.querySelector('.correct-lottie-100');
+    let lottie50 = document.querySelector('.correct-lottie-50');
+    let wrongAnswer1 = document.querySelector('.wrong-answer-1');
+    let wrongAnswer2 = document.querySelector('.wrong-answer-2');
+    let wrongLottie1 = document.querySelector('.wrong-lottie-1');
+    let wrongLottie2 = document.querySelector('.wrong-lottie-2');
     let progressItems;
     let currentItems;
     let currentItem = 0;
@@ -916,6 +968,7 @@
     let skipIntervalID;
     let intervalID;
     let div;
+    let responseAttempts = 1;
 
 
     startButton.addEventListener('click', () => {
@@ -990,17 +1043,52 @@
                 answerButtons[i].innerHTML = currentItems[currentItem].answers[i];
                 answerButtons[i].onclick = () => {
                     if (currentItems[currentItem].answers[i] === currentItems[currentItem].right_answer) {
-                        answerButtons[i].classList.add('correct');
-                        setProgressItem('correct');
-                        setTimeout(() => {
-                            setStory(currentItems[currentItem].story_images[0], currentItems[currentItem].story);
-                            currentItem++;
-                        }, 2000);
-                        currentScore = currentScore + 100;
-                        score.textContent = String(currentScore);
+                        if (responseAttempts === 1) {
+                            answerButtons[i].classList.add('correct');
+                            setProgressItem('correct');
+                            setTimeout(() => {
+                                setStory(currentItems[currentItem].story_images[0], currentItems[currentItem].story);
+                                currentItem++;
+                            }, 2000);
+                            currentScore = currentScore + 100;
+                            score.textContent = String(currentScore);
+                            correctAnswer100.classList.add('active');
+                            lottie100.play();
+                        } else if (responseAttempts === 2) {
+                            answerButtons[i].classList.add('correct');
+                            setProgressItem('correct');
+                            setTimeout(() => {
+                                setStory(currentItems[currentItem].story_images[0], currentItems[currentItem].story);
+                                currentItem++;
+                            }, 2000);
+                            currentScore = currentScore + 50;
+                            score.textContent = String(currentScore);
+                            correctAnswer50.classList.add('active');
+                            lottie50.play();
+                        }
                     } else {
-                        answerButtons[i].classList.add('wrong');
-                        setProgressItem('wrong');
+                        if (responseAttempts === 1) {
+                            answerButtons[i].classList.add('wrong');
+                            setProgressItem('wrong');
+                            responseAttempts++;
+                            wrongAnswer1.classList.add('active');
+                            wrongLottie1.play();
+                            setTimeout(() => {
+                                wrongAnswer1.classList.remove('active');
+                                wrongLottie1.stop();
+                            }, 2000);
+                        } else if (responseAttempts === 2) {
+                            answerButtons[i].classList.add('wrong');
+                            setProgressItem('wrong');
+                            wrongAnswer2.classList.add('active');
+                            wrongLottie2.play();
+                            setTimeout(() => {
+                                wrongAnswer2.classList.remove('active');
+                                wrongLottie2.stop();
+                                setStory(currentItems[currentItem].story_images[0], currentItems[currentItem].story);
+                                currentItem++;
+                            }, 2000);
+                        }
                     }
                 }
             }
@@ -1014,6 +1102,7 @@
             currentScore = 0;
             score.textContent = String(currentScore);
             cleanProgressBar();
+            responseAttempts = 1;
         }
         questionSkip.onclick = () => {
             currentItem++;
@@ -1022,6 +1111,11 @@
     }
 
     function setStory(image, story) {
+        responseAttempts = 1;
+        correctAnswer100.classList.remove('active');
+        lottie100.stop();
+        correctAnswer50.classList.remove('active');
+        lottie50.stop();
         for (let i = 0; i < answerButtons.length; i++) {
             answerButtons[i].classList.remove('correct');
             answerButtons[i].classList.remove('wrong');
