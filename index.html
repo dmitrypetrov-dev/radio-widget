@@ -1107,6 +1107,10 @@
         questionSkip.onclick = () => {
             currentItem++;
             setQuestion();
+            for (let i = 0; i < answerButtons.length; i++) {
+                answerButtons[i].classList.remove('wrong');
+            }
+            responseAttempts = 1;
         }
     }
 
