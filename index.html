@@ -379,11 +379,13 @@
             max-width: 500px;
             height: 100vh;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
         }
 
         .quiz {
             width: 100%;
-            height: 100%;
+            flex-grow: 1;
         }
 
         .quiz-start {
@@ -405,6 +407,18 @@
             left: 16%;
             background: url(img/radio.png) center no-repeat;
             background-size: 120%;
+        }
+
+        .quiz-start::after {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            bottom: 0;
+            left: 0;
+            background: url(img/main-bg-2.png) center 70px no-repeat;
+            background-size: cover;
+            z-index: -100;
         }
 
         .quiz-start_wrapper {
@@ -475,6 +489,7 @@
             width: 100%;
             height: 100%;
             padding-top: 20px;
+            background: url(img/main-bg.png) center -60px no-repeat;
             display: none;
         }
 
@@ -559,9 +574,9 @@
             font-style: normal;
             line-height: 150%;
             letter-spacing: normal;
-            color: #383a48;
+            color: #fff;
             max-width: 275px;
-            text-align: right;
+            text-align: center;
             margin-bottom: 5vh;
         }
 
@@ -650,6 +665,8 @@
         .quiz-story {
             width: 100%;
             height: 100%;
+            background: url(img/story-bg.png) center -71px no-repeat;
+            position: relative;
             display: none;
         }
 
@@ -658,15 +675,27 @@
             content: "";
             width: 120px;
             height: 90px;
-            top: 195px;
-            left: 33%;
+            top: 178px;
+            left: 1%;
             background: url(img/radio.png) center no-repeat;
             background-size: 125%;
             z-index: 500;
         }
 
+        .quiz-story::after {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            bottom: 0;
+            left: 0;
+            background: url(img/main-bg-2.png) center 50px no-repeat;
+            background-size: cover;
+            z-index: -100;
+        }
+
         .quiz-story_img {
-            max-width: 360px;
+            max-width: 100%;
             height: 240px;
             margin: 0 auto 5vh auto;
         }
@@ -735,7 +764,21 @@
         .quiz-end {
             width: 100%;
             height: 100%;
+            background: url(img/main-bg.png) center -245px no-repeat;
+            position: relative;
             display: none;
+        }
+
+        .quiz-end::before {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            bottom: 0;
+            left: 0;
+            background: url(img/main-bg-2.png) center 50px no-repeat;
+            background-size: cover;
+            z-index: -100;
         }
 
         .quiz-end_wrapper {
@@ -808,12 +851,22 @@
             display: block;
         }
 
+        .header {
+            width: 100%;
+            height: 62px;
+            background-color: #000;
+            flex-shrink: 0;
+        }
+
+        .footer {
+            width: 100%;
+            height: 62px;
+            background-color: #eaebed;
+            flex-shrink: 0;
+        }
+
         @media screen and (max-width: 480px) {
             .quiz-start::before {
-                left: 5%;
-            }
-
-            .quiz-story::before {
                 left: 5%;
             }
 
@@ -824,8 +877,21 @@
                 left: 3%;
             }
 
-            .quiz-story::before {
-                left: 3%;
+            .quiz-story {
+                background-size: 100%;
+                background-position: center -11px;
+            }
+
+            .quiz-start::after {
+                background-position: center 55px;
+            }
+
+            .quiz-story::after {
+                background-position: center 45px;
+            }
+
+            .quiz-end::before {
+                background-position: center 45px;
             }
         }
 
@@ -834,6 +900,7 @@
 </head>
 <body>
 <div class="wrapper" dir="rtl">
+    <div class="header"></div>
     <div class="quiz">
         <div class="quiz-start active">
             <div class="quiz-start_wrapper">
@@ -933,6 +1000,7 @@
             </div>
         </div>
     </div>
+    <div class="footer"></div>
 </div>
 <script>
 
