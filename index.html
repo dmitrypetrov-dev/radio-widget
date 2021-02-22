@@ -1103,6 +1103,7 @@
 
     function setStandaloneStory() {
         if (currentItems[currentItem].standalone_story !== null) {
+            quizItem.classList.remove('active');
             quizStart.classList.add('active');
             standaloneImage.src = currentItems[currentItem].standalone_image;
             standaloneTitle.textContent = currentItems[currentItem].artist + ' - ' + currentItems[currentItem].title;
