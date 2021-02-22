@@ -1129,8 +1129,57 @@
             for (let i = 0; i < answerButtons.length; i++) {
                 answerButtons[i].innerHTML = currentItems[currentItem].answers[i];
                 answerButtons[i].onclick = () => {
-                    if (currentItems[currentItem].answers[i] === currentItems[currentItem].right_answer) {
-                        if (responseAttempts === 1) {
+                    if (answerButtons.length === 3) {
+                        if (currentItems[currentItem].answers[i] === currentItems[currentItem].right_answer) {
+                            if (responseAttempts === 1) {
+                                answerButtons[i].classList.add('correct');
+                                setProgressItem('correct');
+                                setTimeout(() => {
+                                    setStory(currentItems[currentItem].story_images[0], currentItems[currentItem].story);
+                                    currentItem++;
+                                }, 2000);
+                                currentScore = currentScore + 100;
+                                score.textContent = String(currentScore);
+                                correctAnswer100.classList.add('active');
+                                lottie100.play();
+                            } else if (responseAttempts === 2) {
+                                answerButtons[i].classList.add('correct');
+                                setProgressItem('correct');
+                                setTimeout(() => {
+                                    setStory(currentItems[currentItem].story_images[0], currentItems[currentItem].story);
+                                    currentItem++;
+                                }, 2000);
+                                currentScore = currentScore + 50;
+                                score.textContent = String(currentScore);
+                                correctAnswer50.classList.add('active');
+                                lottie50.play();
+                            }
+                        } else {
+                            if (responseAttempts === 1) {
+                                answerButtons[i].classList.add('wrong');
+                                setProgressItem('wrong');
+                                responseAttempts++;
+                                wrongAnswer1.classList.add('active');
+                                wrongLottie1.play();
+                                setTimeout(() => {
+                                    wrongAnswer1.classList.remove('active');
+                                    wrongLottie1.stop();
+                                }, 2000);
+                            } else if (responseAttempts === 2) {
+                                answerButtons[i].classList.add('wrong');
+                                setProgressItem('wrong');
+                                wrongAnswer2.classList.add('active');
+                                wrongLottie2.play();
+                                setTimeout(() => {
+                                    wrongAnswer2.classList.remove('active');
+                                    wrongLottie2.stop();
+                                    setStory(currentItems[currentItem].story_images[0], currentItems[currentItem].story);
+                                    currentItem++;
+                                }, 2000);
+                            }
+                        }
+                    } else {
+                        if (currentItems[currentItem].answers[i] === currentItems[currentItem].right_answer) {
                             answerButtons[i].classList.add('correct');
                             setProgressItem('correct');
                             setTimeout(() => {
@@ -1141,37 +1190,14 @@
                             score.textContent = String(currentScore);
                             correctAnswer100.classList.add('active');
                             lottie100.play();
-                        } else if (responseAttempts === 2) {
-                            answerButtons[i].classList.add('correct');
-                            setProgressItem('correct');
-                            setTimeout(() => {
-                                setStory(currentItems[currentItem].story_images[0], currentItems[currentItem].story);
-                                currentItem++;
-                            }, 2000);
-                            currentScore = currentScore + 50;
-                            score.textContent = String(currentScore);
-                            correctAnswer50.classList.add('active');
-                            lottie50.play();
-                        }
-                    } else {
-                        if (responseAttempts === 1) {
+                        } else {
                             answerButtons[i].classList.add('wrong');
                             setProgressItem('wrong');
-                            responseAttempts++;
                             wrongAnswer1.classList.add('active');
                             wrongLottie1.play();
                             setTimeout(() => {
                                 wrongAnswer1.classList.remove('active');
                                 wrongLottie1.stop();
-                            }, 2000);
-                        } else if (responseAttempts === 2) {
-                            answerButtons[i].classList.add('wrong');
-                            setProgressItem('wrong');
-                            wrongAnswer2.classList.add('active');
-                            wrongLottie2.play();
-                            setTimeout(() => {
-                                wrongAnswer2.classList.remove('active');
-                                wrongLottie2.stop();
                                 setStory(currentItems[currentItem].story_images[0], currentItems[currentItem].story);
                                 currentItem++;
                             }, 2000);
