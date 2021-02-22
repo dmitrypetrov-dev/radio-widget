@@ -391,7 +391,7 @@
         .quiz-start {
             width: 100%;
             height: 100%;
-            padding-top: 10vh;
+            padding-top: 11vh;
             padding-bottom: 37px;
             display: none;
             position: relative;
@@ -440,7 +440,7 @@
         .quiz-start_img {
             width: 174px;
             height: 174px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .quiz-start_title {
@@ -452,6 +452,7 @@
             text-align: center;
             color: #383a48;
             text-transform: uppercase;
+            max-width: 330px;
             margin-bottom: 25px;
         }
 
@@ -896,23 +897,20 @@
         }
 
     </style>
-    <title>Roadio</title>
+    <title>Radio</title>
 </head>
 <body>
 <div class="wrapper" dir="rtl">
     <div class="header"></div>
     <div class="quiz">
-        <div class="quiz-start active">
+        <div class="quiz-start">
             <div class="quiz-start_wrapper">
                 <div class="quiz-start_top">
-                    <div class="quiz-start_img"><img src="img/start-img.png" alt="Story image"></div>
-                    <p class="quiz-start_title">Don Mclean - American Pie</p>
-                    <p class="quiz-start_text"> אמריקן פאי הוא סינגל הבכורה של זמר הפולק רוק
-                        האמריקאי דון מקלין. השיר יצא באוקטובר 1971
-                        .וזכה להצלחה רבה ברחבי העולם ובארה"ב
-                        אמריקן פאי" הוא שיר ביוגרפי בחלקו, ובחלקו"
-                        בלדה שעוסקת במעבר של ארצות הברית משנות
-                        .החמישים לשנות השישים</p>
+                    <div class="quiz-start_img">
+                        <img class="standalone-story-img" src="" alt="Story image">
+                    </div>
+                    <p class="quiz-start_title"></p>
+                    <p class="quiz-start_text"></p>
                 </div>
                 <button class="start-btn">בואו נתחיל</button>
             </div>
@@ -1005,6 +1003,9 @@
 <script>
 
     let quizStart = document.querySelector('.quiz-start');
+    let standaloneImage = document.querySelector('.standalone-story-img');
+    let standaloneTitle = document.querySelector('.quiz-start_title');
+    let standaloneStory = document.querySelector('.quiz-start_text');
     let startButton = document.querySelector('.start-btn');
     let quizItem = document.querySelector('.quiz-item');
     let quizQuestion = document.querySelector('.quiz-question');
@@ -1038,12 +1039,10 @@
     let div;
     let responseAttempts = 1;
 
-
-    startButton.addEventListener('click', () => {
+    document.addEventListener("DOMContentLoaded", function () {
         sendRequest();
         startIntervalID = setInterval(sendRequest, 10000);
-        quizStart.classList.remove('active');
-    })
+    });
 
     function sendRequest() {
         fetch('https://app.roadio.io/v2/play/items?apikey=1e8ec6bc-7d28-4cd3-a947-d4ee2f9d1dcc&station=glglz&locale=he')
@@ -1051,7 +1050,7 @@
                 if (response.ok) {
                     return response.json();
                 } else {
-                    alert('oops! something went wrong...please try again!');
+                    console.log('oops! something went wrong...please try again!');
                 }
             })
             .then((data) => {
@@ -1066,15 +1065,14 @@
                 }
                 if (currentArtist !== previousArtist) {
                     setProgressBar();
-                    quizItem.classList.add('active');
                     quizEnd.classList.remove('active');
                     clearInterval(intervalID);
                     clearInterval(skipIntervalID);
                     setQuestion();
                 }
             })
-            .catch((error) => {
-                console.log(error);
+            .catch(() => {
+                console.log('the server is not responding to requests...');
             })
     }
 
@@ -1103,8 +1101,24 @@
         }
     }
 
+    function setStandaloneStory() {
+        if (currentItems[currentItem].standalone_story !== null) {
+            quizStart.classList.add('active');
+            standaloneImage.src = currentItems[currentItem].standalone_image;
+            standaloneTitle.textContent = currentItems[currentItem].artist + ' - ' + currentItems[currentItem].title;
+            standaloneStory.textContent = currentItems[currentItem].standalone_story;
+        } else {
+            quizItem.classList.add('active');
+        }
+        startButton.onclick = () => {
+            quizStart.classList.remove('active');
+            quizItem.classList.add('active');
+        }
+    }
+
     function setQuestion() {
         if (currentItems.length > currentItem) {
+            setStandaloneStory();
             setProgressItem();
             quizQuestion.innerHTML = currentItems[currentItem].question;
             for (let i = 0; i < answerButtons.length; i++) {
@@ -1200,7 +1214,6 @@
             if (currentItems.length > currentItem) {
                 setQuestion();
                 quizStory.classList.remove('active');
-                quizItem.classList.add('active');
             } else {
                 quizStory.classList.remove('active');
                 quizEnd.classList.add('active');
