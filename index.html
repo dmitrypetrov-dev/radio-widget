@@ -1101,17 +1101,19 @@
 
     function setStandaloneStory() {
         if (currentItems[currentItem].standalone_story !== null) {
+            quizStory.classList.remove('active');
             quizItem.classList.remove('active');
             quizStart.classList.add('active');
             standaloneImage.src = currentItems[currentItem].standalone_image;
             standaloneTitle.textContent = currentItems[currentItem].artist + ' - ' + currentItems[currentItem].title;
             standaloneStory.textContent = currentItems[currentItem].standalone_story;
+            currentItem++;
         } else {
             quizItem.classList.add('active');
         }
         startButton.onclick = () => {
             quizStart.classList.remove('active');
-            quizItem.classList.add('active');
+            setQuestion();
         }
     }
 
