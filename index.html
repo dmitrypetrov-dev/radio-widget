@@ -1107,12 +1107,15 @@
             standaloneImage.src = currentItems[currentItem].standalone_image;
             standaloneTitle.textContent = currentItems[currentItem].artist + ' - ' + currentItems[currentItem].title;
             standaloneStory.textContent = currentItems[currentItem].standalone_story;
-            currentItem++;
         } else {
             quizItem.classList.add('active');
         }
         startButton.onclick = () => {
             quizStart.classList.remove('active');
+            while (quizAnswers.firstChild) {
+                quizAnswers.removeChild(quizAnswers.firstChild);
+            }
+            currentItem++;
             setQuestion();
         }
     }
