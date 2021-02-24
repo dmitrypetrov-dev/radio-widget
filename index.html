@@ -1101,6 +1101,13 @@
 
     function setStandaloneStory() {
         if (currentItems[currentItem].standalone_story !== null) {
+            if (currentItems[currentItem].story_direction === 'ltr') {
+                standaloneStory.setAttribute('dir', 'ltr');
+                standaloneStory.style.textAlign = 'left';
+            } else {
+                standaloneStory.setAttribute('dir', 'rtl');
+                standaloneStory.style.textAlign = 'right';
+            }
             quizStory.classList.remove('active');
             quizItem.classList.remove('active');
             quizStart.classList.add('active');
@@ -1122,6 +1129,11 @@
 
     function setQuestion() {
         if (currentItems.length > currentItem) {
+            if (currentItems[currentItem].question_direction === 'ltr') {
+                quizQuestion.setAttribute('dir', 'ltr');
+            } else {
+                quizQuestion.setAttribute('dir', 'rtl');
+            }
             setStandaloneStory();
             setProgressItem();
             quizQuestion.innerHTML = currentItems[currentItem].question;
@@ -1234,6 +1246,13 @@
     }
 
     function setStory(image, story) {
+        if (currentItems[currentItem].story_direction === 'ltr') {
+            storyText.setAttribute('dir', 'ltr');
+            storyText.style.textAlign = 'left';
+        } else {
+            storyText.setAttribute('dir', 'rtl');
+            storyText.style.textAlign = 'right';
+        }
         responseAttempts = 1;
         correctAnswer100.classList.remove('active');
         lottie100.stop();
