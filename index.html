@@ -802,7 +802,19 @@
         }
 
         .quiz-end_score {
-            max-width: 298px;
+            max-width: 230px;
+            font-family: Arimo, Arial, sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            font-style: normal;
+            line-height: 1.67;
+            letter-spacing: normal;
+            text-align: center;
+            color: #383a48;
+        }
+
+        .quiz-end_score2 {
+            max-width: 310px;
             font-family: Arimo, Arial, sans-serif;
             font-size: 18px;
             font-weight: 700;
@@ -990,8 +1002,9 @@
                                    autoplay></lottie-player>
                 </div>
                 <p class="quiz-end_score"></p>
-                <p class="quiz-end_text">.כרגע נגמרו לנו השאלות כשיתחיל השיר הבא, יופיעו
-                    !שאלות נוספות</p>
+                <p class="quiz-end_score2">לא רע בכלל, אבל יש מקום לשיפור 💪</p>
+                <p class="quiz-end_text">כרגע נגמרו לנו השאלות. כשיתחיל השיר הבא, יופיעו
+                    שאלות נוספות!</p>
             </div>
         </div>
     </div>
@@ -1230,7 +1243,7 @@
             currentItem = 0;
             previousArtist = currentArtist;
             skipIntervalID = setInterval(sendRequest, 10000);
-            scoreText.textContent = `תוצאה סופית: ${currentScore} נקודות!` + ' לא רע בכלל, אבל יש מקום לשיפור 💪';
+            scoreText.textContent = `תוצאה סופית: ${currentScore} נקודות!`;
             currentScore = 0;
             score.textContent = String(currentScore);
             cleanProgressBar();
@@ -1276,7 +1289,7 @@
                 intervalID = setInterval(sendRequest, 10000);
                 currentItem = 0;
                 previousArtist = currentArtist;
-                scoreText.textContent = `תוצאה סופית: ${currentScore} נקודות!` + ' לא רע בכלל, אבל יש מקום לשיפור 💪';
+                scoreText.textContent = `תוצאה סופית: ${currentScore} נקודות!`;
                 currentScore = 0;
                 score.textContent = String(currentScore);
                 cleanProgressBar();
