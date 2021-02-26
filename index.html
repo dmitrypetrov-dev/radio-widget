@@ -844,7 +844,7 @@
             height: 100%;
             top: 0;
             left: 0;
-            transform: scale(1.4);
+            transform: scale(1.2);
             display: none;
         }
 
@@ -956,25 +956,25 @@
                 </div>
                 <div class="correct-answer-100 quiz-item_lottie">
                     <lottie-player class="correct-lottie-100"
-                                   src="https://assets9.lottiefiles.com/packages/lf20_dp1tqeij.json"
+                                   src="https://assets10.lottiefiles.com/packages/lf20_tyedbt79.json"
                                    background="transparent" speed="1" style="width: 100%; height: 100%;"
                     ></lottie-player>
                 </div>
                 <div class="correct-answer-50 quiz-item_lottie">
                     <lottie-player class="correct-lottie-50"
-                                   src="https://assets8.lottiefiles.com/packages/lf20_s7aujx5y.json"
+                                   src="https://assets9.lottiefiles.com/packages/lf20_0d4qsdiv.json"
                                    background="transparent" speed="1" style="width: 100%; height: 100%;"
                     ></lottie-player>
                 </div>
                 <div class="wrong-answer-1 quiz-item_lottie">
                     <lottie-player class="wrong-lottie-1"
-                                   src="https://assets6.lottiefiles.com/packages/lf20_j1jw7sxz.json"
+                                   src="https://assets8.lottiefiles.com/packages/lf20_rj9qfkim.json"
                                    background="transparent" speed="1" style="width: 100%; height: 100%;"
                     ></lottie-player>
                 </div>
                 <div class="wrong-answer-2 quiz-item_lottie">
                     <lottie-player class="wrong-lottie-2"
-                                   src="https://assets10.lottiefiles.com/packages/lf20_mtitgyoi.json"
+                                   src="https://assets10.lottiefiles.com/packages/lf20_tikkmnfd.json"
                                    background="transparent" speed="1" style="width: 100%; height: 100%;"
                     ></lottie-player>
                 </div>
@@ -997,7 +997,7 @@
         <div class="quiz-end">
             <div class="quiz-end_wrapper">
                 <div class="quiz-end_lottie">
-                    <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_dqwsziex.json"
+                    <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_iwafnjbr.json"
                                    background="transparent" speed="1" style="width: 100%; height: 100%;" loop
                                    autoplay></lottie-player>
                 </div>
@@ -1070,7 +1070,6 @@
                 currentItems = data.items;
                 if (currentItems.length === 0) {
                     console.log('uploading questions...please wait');
-                    quizQuestion.innerHTML = 'uploading questions...please wait';
                 } else {
                     currentArtist = currentItems[0].artist;
                     clearInterval(startIntervalID);
@@ -1150,7 +1149,12 @@
             }
             setStandaloneStory();
             setProgressItem();
-            quizQuestion.innerHTML = currentItems[currentItem].question;
+            quizQuestion.textContent = currentItems[currentItem].question;
+            if (quizQuestion.textContent.length > 92) {
+                quizQuestion.style.fontSize = '18px';
+            } else {
+                quizQuestion.style.fontSize = '21px';
+            }
             for (let i = 0; i < currentItems[currentItem].answers.length; i++) {
                 button = document.createElement('button');
                 button.className = 'answer-btn';
@@ -1158,7 +1162,7 @@
             }
             answerButtons = document.querySelectorAll('.answer-btn');
             for (let i = 0; i < answerButtons.length; i++) {
-                answerButtons[i].innerHTML = currentItems[currentItem].answers[i];
+                answerButtons[i].textContent = currentItems[currentItem].answers[i];
                 answerButtons[i].onclick = () => {
                     if (answerButtons.length === 3) {
                         if (currentItems[currentItem].answers[i] === currentItems[currentItem].right_answer) {
@@ -1278,7 +1282,7 @@
         quizItem.classList.remove('active');
         quizStory.classList.add('active');
         storyImg.src = image;
-        storyText.innerHTML = story;
+        storyText.textContent = story;
         nextButton.onclick = () => {
             if (currentItems.length > currentItem) {
                 setQuestion();
