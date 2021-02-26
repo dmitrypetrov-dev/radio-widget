@@ -1150,8 +1150,10 @@
         if (currentItems.length > currentItem) {
             if (currentItems[currentItem].question_direction === 'ltr') {
                 quizQuestion.setAttribute('dir', 'ltr');
+                quizAnswers.setAttribute('dir', 'ltr');
             } else {
                 quizQuestion.setAttribute('dir', 'rtl');
+                quizAnswers.setAttribute('dir', 'rtl');
             }
             setStandaloneStory();
             setProgressItem();
