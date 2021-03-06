@@ -395,7 +395,7 @@
             padding-bottom: 4vh;
             display: none;
             position: relative;
-            background: url(img/standalone-story-bg.svg) center no-repeat;
+            background: url(https://raw.githubusercontent.com/moscovig/roadio_static/master/images/radio/standalone-story-bg.svg) center no-repeat;
             background-size: cover;
         }
 
@@ -406,7 +406,7 @@
             height: 90px;
             top: 2%;
             left: 16%;
-            background: url(img/radio.png) center no-repeat;
+            background: url(https://raw.githubusercontent.com/moscovig/roadio_static/master/images/radio/radio.png) center no-repeat;
             background-size: 120%;
         }
 
@@ -480,7 +480,7 @@
             width: 100%;
             height: 100%;
             padding-top: 20px;
-            background: url(img/question-bg.svg) center no-repeat;
+            background: url(https://raw.githubusercontent.com/moscovig/roadio_static/master/images/radio/question-bg.svg) center no-repeat;
             background-size: cover;
             display: none;
         }
@@ -560,6 +560,12 @@
             cursor: pointer;
         }
 
+        .quiz-question_wrapper {
+            max-width: 310px;
+            height: 16vh;
+            margin-bottom: 5vh;
+        }
+
         .quiz-question {
             font-family: Arimo, Arial, sans-serif;
             font-size: 21px;
@@ -568,9 +574,7 @@
             line-height: 150%;
             letter-spacing: normal;
             color: #fff;
-            max-width: 310px;
             text-align: center;
-            margin-bottom: 5vh;
         }
 
         .quiz-answers {
@@ -658,7 +662,7 @@
         .quiz-story {
             width: 100%;
             height: 100%;
-            background: url(img/question-story-bg.svg) center no-repeat;
+            background: url(https://raw.githubusercontent.com/moscovig/roadio_static/master/images/radio/question-story-bg.svg) center no-repeat;
             background-size: cover;
             position: relative;
             display: none;
@@ -672,7 +676,7 @@
             top: 6%;
             left: 50%;
             transform: translateX(-50%);
-            background: url(img/radio-final.svg) center no-repeat;
+            background: url(https://raw.githubusercontent.com/moscovig/roadio_static/master/images/radio/radio-final.svg) center no-repeat;
             z-index: 50;
         }
 
@@ -748,7 +752,7 @@
         .quiz-end {
             width: 100%;
             height: 100%;
-            background: url(img/standalone-story-bg.svg) center no-repeat;
+            background: url(https://raw.githubusercontent.com/moscovig/roadio_static/master/images/radio/standalone-story-bg.svg) center no-repeat;
             background-size: cover;
             position: relative;
             display: none;
@@ -969,7 +973,9 @@
                             </div>
                         </div>
                     </div>
-                    <p class="quiz-question"></p>
+                    <div class="quiz-question_wrapper">
+                        <p class="quiz-question"></p>
+                    </div>
                 </div>
                 <div class="quiz-item_bottom">
                     <div class="quiz-answers"></div>
@@ -981,25 +987,25 @@
                 </div>
                 <div class="correct-answer-100 quiz-item_lottie">
                     <lottie-player class="correct-lottie-100"
-                                   src="https://assets10.lottiefiles.com/packages/lf20_tyedbt79.json"
+                                   src="https://raw.githubusercontent.com/moscovig/roadio_static/master/images/radio/correct-100-in-out.json"
                                    background="transparent" speed="1" style="width: 100%; height: 100%;"
                     ></lottie-player>
                 </div>
                 <div class="correct-answer-50 quiz-item_lottie">
                     <lottie-player class="correct-lottie-50"
-                                   src="https://assets9.lottiefiles.com/packages/lf20_0d4qsdiv.json"
+                                   src="https://raw.githubusercontent.com/moscovig/roadio_static/master/images/radio/correct-50-in-out.json"
                                    background="transparent" speed="1" style="width: 100%; height: 100%;"
                     ></lottie-player>
                 </div>
                 <div class="wrong-answer-1 quiz-item_lottie">
                     <lottie-player class="wrong-lottie-1"
-                                   src="https://assets8.lottiefiles.com/packages/lf20_rj9qfkim.json"
+                                   src="https://raw.githubusercontent.com/moscovig/roadio_static/master/images/radio/wrong-in-out-1.json"
                                    background="transparent" speed="1" style="width: 100%; height: 100%;"
                     ></lottie-player>
                 </div>
                 <div class="wrong-answer-2 quiz-item_lottie">
                     <lottie-player class="wrong-lottie-2"
-                                   src="https://assets10.lottiefiles.com/packages/lf20_tikkmnfd.json"
+                                   src="https://raw.githubusercontent.com/moscovig/roadio_static/master/images/radio/wrong-in-out-2.json"
                                    background="transparent" speed="1" style="width: 100%; height: 100%;"
                     ></lottie-player>
                 </div>
@@ -1022,9 +1028,10 @@
         <div class="quiz-end">
             <div class="quiz-end_wrapper">
                 <div class="quiz-end_lottie">
-                    <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_iwafnjbr.json"
-                                   background="transparent" speed="1" style="width: 100%; height: 100%;" loop
-                                   autoplay></lottie-player>
+                    <lottie-player
+                            src="https://raw.githubusercontent.com/moscovig/roadio_static/master/images/radio/conclusion.json"
+                            background="transparent" speed="1" style="width: 100%; height: 100%;" loop
+                            autoplay></lottie-player>
                 </div>
                 <p class="quiz-end_score"></p>
                 <p class="quiz-end_score2">לא רע בכלל, אבל יש מקום לשיפור 💪</p>
@@ -1044,6 +1051,7 @@
     let standaloneStory = document.querySelector('.quiz-start_text');
     let startButton = document.querySelector('.start-btn');
     let quizItem = document.querySelector('.quiz-item');
+    let quizQuestionWrapper = document.querySelector('.quiz-question_wrapper');
     let quizQuestion = document.querySelector('.quiz-question');
     let quizAnswers = document.querySelector('.quiz-answers');
     let answerButtons;
@@ -1166,6 +1174,14 @@
         }
     }
 
+    function resizeToFit() {
+        let fontSize = window.getComputedStyle(quizQuestion).fontSize;
+        if (quizQuestion.clientHeight >= quizQuestionWrapper.clientHeight) {
+            quizQuestion.style.fontSize = (parseFloat(fontSize) - 1) + 'px';
+            resizeToFit();
+        }
+    }
+
     function setQuestion() {
         if (currentItems.length > currentItem) {
             if (currentItems[currentItem].question_direction === 'ltr') {
@@ -1178,11 +1194,8 @@
             setStandaloneStory();
             setProgressItem();
             quizQuestion.textContent = currentItems[currentItem].question;
-            if (quizQuestion.textContent.length > 92) {
-                quizQuestion.style.fontSize = '18px';
-            } else {
-                quizQuestion.style.fontSize = '21px';
-            }
+            quizQuestion.style.fontSize = '21px';
+            resizeToFit();
             for (let i = 0; i < currentItems[currentItem].answers.length; i++) {
                 button = document.createElement('button');
                 button.className = 'answer-btn';
